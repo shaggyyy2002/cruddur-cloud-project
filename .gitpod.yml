@@ -2,12 +2,10 @@ tasks:
   - name: aws-cli
     env:
       AWS_CLI_AUTO_PROMPT: on-partial
-    init: |
-      cd /workspace
-      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-      unzip awscliv2.zip
-      sudo ./aws/install
-      cd $THEIA_WORKSPACE_ROOT
+    before: |
+      cd $PROJECT_ROOT
+      source ./bin/install-aws-cli.sh
+      cd $PROJECT_ROOT
   - name: postgres
     init: |
       curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
@@ -18,6 +16,10 @@ tasks:
     command: |
       cd frontend-react-js
       npm i
+  - name: backend-flask
+    command: |
+      cd backend-flask
+      pip3 install -r requirements.txt    
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
