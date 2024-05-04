@@ -3,7 +3,7 @@ tasks:
     env:
       AWS_CLI_AUTO_PROMPT: on-partial
     init: |
-      cd $PROJECT_ROOT
+      cd ../../workspace/cruddur-cloud-project/
       source ./bin/install-aws-cli.sh
       cd $PROJECT_ROOT
   - name: postgres
