@@ -1,6 +1,7 @@
 import uuid
 from datetime import datetime, timedelta, timezone
-from lib.db import db
+
+# from lib.db import db
 
 class CreateActivity:
   def run(message, user_handle, ttl):
@@ -52,9 +53,9 @@ class CreateActivity:
         'expires_at': (now + ttl_offset).isoformat()
       }
     return model
-    def create_activity(user_uuid, message, expires_at): 
-      sql = f"""
-      INSERT INTO (
+  def create_activity(user_uuid, message, expires_at):
+    sql = f"""
+    INSERT INTO (
       user_uuid,
       message,
       expires_at
@@ -65,6 +66,4 @@ class CreateActivity:
       "{expires_at}"
     )
     """
-    query_commit(sql)
-
-
+    #query_commit(sql)
